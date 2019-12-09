@@ -9,8 +9,39 @@
 import SwiftUI
 
 struct TimerView: View {
+    
+    @ObservedObject var timerVM = TimerViewModel()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello World!"/*@END_MENU_TOKEN@*/)
+        VStack(spacing: 80) {
+            Text("00:00.0\(timerVM.mainTime)")
+                .font(.largeTitle)
+            
+            VStack(spacing: 20) {
+                ForEach(0..<timerVM.rows) { i in
+                    HStack(alignment: .center, spacing: 0) {
+                        ForEach(0..<self.timerVM.columns) { j in
+                            self.buildTimerView(i, j)
+                        }
+                    }
+                }
+            }
+            
+            HStack(alignment: .center) {
+                ForEach(0..<3) { n in
+                    ControlButtonView(button: self.$timerVM.buttons[n], rootVM: self.timerVM)
+                }
+            }
+            
+        }.padding()
+    }
+    
+    func buildTimerView(_ i: Int, _ j: Int) -> AnyView {
+        let n = 3 * i + j
+        if (n < timerVM.timers.count) {
+            return AnyView(CircleTimerView(timer: $timerVM.timers[n], rootVM: self.timerVM))
+        }
+        return AnyView(EmptyView())
     }
 }
 

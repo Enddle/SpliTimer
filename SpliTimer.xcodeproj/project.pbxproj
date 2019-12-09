@@ -17,6 +17,11 @@
 		900A7DCD226643B4009C052B /* Numbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900A7DCA226643B4009C052B /* Numbers.swift */; };
 		9018F499239D46F0005513A2 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9018F498239D46F0005513A2 /* TimerView.swift */; };
 		9018F49B239D4873005513A2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9018F49A239D4873005513A2 /* SceneDelegate.swift */; };
+		9078A9F4239D692900A8E2EC /* CircleTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9078A9F3239D692900A8E2EC /* CircleTimer.swift */; };
+		9078AA00239DA77200A8E2EC /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9078A9FF239DA77200A8E2EC /* TimerViewModel.swift */; };
+		9078AA06239DAD8B00A8E2EC /* ControlButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9078AA05239DAD8B00A8E2EC /* ControlButton.swift */; };
+		9078AA0B239DEE8200A8E2EC /* CircleTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9078AA0A239DEE8200A8E2EC /* CircleTimerView.swift */; };
+		9078AA10239DF29F00A8E2EC /* ControlButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9078AA0F239DF29F00A8E2EC /* ControlButtonView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +37,11 @@
 		900A7DCA226643B4009C052B /* Numbers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Numbers.swift; sourceTree = "<group>"; };
 		9018F498239D46F0005513A2 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		9018F49A239D4873005513A2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		9078A9F3239D692900A8E2EC /* CircleTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleTimer.swift; sourceTree = "<group>"; };
+		9078A9FF239DA77200A8E2EC /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
+		9078AA05239DAD8B00A8E2EC /* ControlButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlButton.swift; sourceTree = "<group>"; };
+		9078AA0A239DEE8200A8E2EC /* CircleTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleTimerView.swift; sourceTree = "<group>"; };
+		9078AA0F239DF29F00A8E2EC /* ControlButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,8 +74,11 @@
 		900A7DB42266439A009C052B /* SpliTimer */ = {
 			isa = PBXGroup;
 			children = (
-				9018F498239D46F0005513A2 /* TimerView.swift */,
 				9018F49A239D4873005513A2 /* SceneDelegate.swift */,
+				9018F498239D46F0005513A2 /* TimerView.swift */,
+				9078AA09239DCFDE00A8E2EC /* Models */,
+				9078AA0C239DF06C00A8E2EC /* Views */,
+				9078AA01239DA80A00A8E2EC /* ViewModels */,
 				900A7DB52266439A009C052B /* AppDelegate.swift */,
 				900A7DB72266439A009C052B /* ViewController.swift */,
 				900A7DB92266439A009C052B /* Main.storyboard */,
@@ -85,6 +98,32 @@
 				900A7DCA226643B4009C052B /* Numbers.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		9078AA01239DA80A00A8E2EC /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				9078A9FF239DA77200A8E2EC /* TimerViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		9078AA09239DCFDE00A8E2EC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9078A9F3239D692900A8E2EC /* CircleTimer.swift */,
+				9078AA05239DAD8B00A8E2EC /* ControlButton.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		9078AA0C239DF06C00A8E2EC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9078AA0A239DEE8200A8E2EC /* CircleTimerView.swift */,
+				9078AA0F239DF29F00A8E2EC /* ControlButtonView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -122,6 +161,7 @@
 				TargetAttributes = {
 					900A7DB12266439A009C052B = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1130;
 					};
 				};
 			};
@@ -161,13 +201,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9078AA06239DAD8B00A8E2EC /* ControlButton.swift in Sources */,
 				9018F499239D46F0005513A2 /* TimerView.swift in Sources */,
+				9078AA10239DF29F00A8E2EC /* ControlButtonView.swift in Sources */,
 				9018F49B239D4873005513A2 /* SceneDelegate.swift in Sources */,
 				900A7DB82266439A009C052B /* ViewController.swift in Sources */,
 				900A7DB62266439A009C052B /* AppDelegate.swift in Sources */,
 				900A7DCD226643B4009C052B /* Numbers.swift in Sources */,
 				900A7DCB226643B4009C052B /* SQLiteHelper.swift in Sources */,
+				9078AA0B239DEE8200A8E2EC /* CircleTimerView.swift in Sources */,
+				9078AA00239DA77200A8E2EC /* TimerViewModel.swift in Sources */,
 				900A7DCC226643B4009C052B /* Interfaces.swift in Sources */,
+				9078A9F4239D692900A8E2EC /* CircleTimer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,7 +370,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = DevEnddle.SpliTimer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -346,7 +391,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = DevEnddle.SpliTimer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
