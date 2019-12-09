@@ -17,10 +17,9 @@ struct CircleTimerView: View {
         VStack(spacing: 10) {
             
             Button(action: {
-//                self.timer.isTiming.toggle()
                 self.rootVM.timerTapped(id: self.timer.id)
             }) {
-                Text("00:\(rootVM.subTimes[timer.id])")
+                Text(timer.subTime.display2())
                     .font(.body).foregroundColor(timer.isTiming ? Color(.label) : Color(.secondaryLabel))
                     .padding(28)
                     .background(Circle().fill(timer.isTiming ? Color(.systemGray) : Color(.systemGray5)))

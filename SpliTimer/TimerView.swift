@@ -14,7 +14,7 @@ struct TimerView: View {
     
     var body: some View {
         VStack(spacing: 80) {
-            Text("00:00.\(timerVM.mainTime)")
+            Text(timerVM.mainTime.display3())
                 .font(.largeTitle)
             
             VStack(spacing: 20) {

@@ -11,8 +11,7 @@ import Combine
 
 class TimerViewModel: ObservableObject {
     
-    @Published var mainTime: Int = 0
-    @Published var subTimes: [Int] = [0]
+    @Published var mainTime = STTime()
     
     let rows = 2
     let columns = 3
@@ -22,7 +21,9 @@ class TimerViewModel: ObservableObject {
         CircleTimer(id: 0, label: "Label 1", isTiming: true)
     ]
     
-    var isMainTiming = false
+    @Published var isMainTiming = false
+    // didChange not working when pausing, temporary published
+    
     var canResetTime = false
     var canAddTimer = true
     
@@ -50,18 +51,18 @@ class TimerViewModel: ObservableObject {
     func resetTimer() {
         if (canResetTime) {
             timer.invalidate()
-            mainTime = 0
-            for n in 0..<subTimes.count {
-                subTimes[n] = 0
+            mainTime.raw = 0
+            for n in 0..<timers.count {
+                timers[n].subTime.raw = 0
             }
             canResetTime = false
+            isMainTiming = false
         }
     }
     
     func addTimer() {
         if (canAddTimer) {
             let count = timers.count
-            subTimes.append(0)
             timers.append(CircleTimer(id: count, label: "Label \(count + 1)"))
             if count == rows * columns - 1 {
                 canAddTimer = false
@@ -81,7 +82,7 @@ class TimerViewModel: ObservableObject {
     }
     
     @objc func action() {
-        mainTime += 1
-        subTimes[active] += 1
+        mainTime.raw += 1
+        timers[active].subTime.raw += 1
     }
 }

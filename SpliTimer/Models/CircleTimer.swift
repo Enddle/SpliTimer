@@ -14,6 +14,8 @@ struct CircleTimer: Identifiable {
     var label: String
     var isTiming: Bool
     
+    var subTime = STTime()
+    
     init(id: Int, label: String, isTiming: Bool = false) {
         self.id = id
         self.label = label

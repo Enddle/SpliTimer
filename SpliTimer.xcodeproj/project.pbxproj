@@ -22,6 +22,7 @@
 		9078AA12239E087900A8E2EC /* ResetButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9078AA11239E087900A8E2EC /* ResetButtonView.swift */; };
 		9078AA14239E091E00A8E2EC /* StartButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9078AA13239E091E00A8E2EC /* StartButtonView.swift */; };
 		9078AA16239E095300A8E2EC /* AddButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9078AA15239E095300A8E2EC /* AddButtonView.swift */; };
+		90AFB22A239E9B11006CFFF0 /* STTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AFB229239E9B11006CFFF0 /* STTime.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		9078AA11239E087900A8E2EC /* ResetButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetButtonView.swift; sourceTree = "<group>"; };
 		9078AA13239E091E00A8E2EC /* StartButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartButtonView.swift; sourceTree = "<group>"; };
 		9078AA15239E095300A8E2EC /* AddButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButtonView.swift; sourceTree = "<group>"; };
+		90AFB229239E9B11006CFFF0 /* STTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STTime.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 			children = (
 				9078A9F3239D692900A8E2EC /* CircleTimer.swift */,
 				9078AA05239DAD8B00A8E2EC /* ControlButton.swift */,
+				90AFB229239E9B11006CFFF0 /* STTime.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -207,6 +210,7 @@
 				900A7DB62266439A009C052B /* AppDelegate.swift in Sources */,
 				9078AA14239E091E00A8E2EC /* StartButtonView.swift in Sources */,
 				900A7DCD226643B4009C052B /* Numbers.swift in Sources */,
+				90AFB22A239E9B11006CFFF0 /* STTime.swift in Sources */,
 				900A7DCB226643B4009C052B /* SQLiteHelper.swift in Sources */,
 				9078AA0B239DEE8200A8E2EC /* CircleTimerView.swift in Sources */,
 				9078AA00239DA77200A8E2EC /* TimerViewModel.swift in Sources */,
