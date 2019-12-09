@@ -14,7 +14,7 @@ struct TimerView: View {
     
     var body: some View {
         VStack(spacing: 80) {
-            Text("00:00.0\(timerVM.mainTime)")
+            Text("00:00.\(timerVM.mainTime)")
                 .font(.largeTitle)
             
             VStack(spacing: 20) {
@@ -28,9 +28,9 @@ struct TimerView: View {
             }
             
             HStack(alignment: .center) {
-                ForEach(0..<3) { n in
-                    ControlButtonView(button: self.$timerVM.buttons[n], rootVM: self.timerVM)
-                }
+                ResetButtonView(button: $timerVM.resetButton, rootVM: timerVM)
+                AddButtonView(button: $timerVM.addButton, rootVM: timerVM)
+                StartButtonView(button: $timerVM.startButton, rootVM: timerVM)
             }
             
         }.padding()

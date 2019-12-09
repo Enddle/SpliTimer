@@ -16,8 +16,6 @@ struct ControlButton: Identifiable {
     var icon2: String
     var color2: Color
     
-    var mainState = true
-    
     init(id: Int, icon: String, color: Color, icon2: String? = nil, color2: Color? = nil) {
         self.id = id
         self.icon = icon

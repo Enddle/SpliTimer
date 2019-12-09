@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		900A7DB62266439A009C052B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900A7DB52266439A009C052B /* AppDelegate.swift */; };
-		900A7DB82266439A009C052B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900A7DB72266439A009C052B /* ViewController.swift */; };
-		900A7DBB2266439A009C052B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 900A7DB92266439A009C052B /* Main.storyboard */; };
 		900A7DBD2266439A009C052B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 900A7DBC2266439A009C052B /* Assets.xcassets */; };
 		900A7DC02266439A009C052B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 900A7DBE2266439A009C052B /* LaunchScreen.storyboard */; };
 		900A7DCB226643B4009C052B /* SQLiteHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900A7DC8226643B4009C052B /* SQLiteHelper.swift */; };
@@ -21,14 +19,14 @@
 		9078AA00239DA77200A8E2EC /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9078A9FF239DA77200A8E2EC /* TimerViewModel.swift */; };
 		9078AA06239DAD8B00A8E2EC /* ControlButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9078AA05239DAD8B00A8E2EC /* ControlButton.swift */; };
 		9078AA0B239DEE8200A8E2EC /* CircleTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9078AA0A239DEE8200A8E2EC /* CircleTimerView.swift */; };
-		9078AA10239DF29F00A8E2EC /* ControlButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9078AA0F239DF29F00A8E2EC /* ControlButtonView.swift */; };
+		9078AA12239E087900A8E2EC /* ResetButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9078AA11239E087900A8E2EC /* ResetButtonView.swift */; };
+		9078AA14239E091E00A8E2EC /* StartButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9078AA13239E091E00A8E2EC /* StartButtonView.swift */; };
+		9078AA16239E095300A8E2EC /* AddButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9078AA15239E095300A8E2EC /* AddButtonView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		900A7DB22266439A009C052B /* SpliTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpliTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		900A7DB52266439A009C052B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		900A7DB72266439A009C052B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		900A7DBA2266439A009C052B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		900A7DBC2266439A009C052B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		900A7DBF2266439A009C052B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		900A7DC12266439A009C052B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -41,7 +39,9 @@
 		9078A9FF239DA77200A8E2EC /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
 		9078AA05239DAD8B00A8E2EC /* ControlButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlButton.swift; sourceTree = "<group>"; };
 		9078AA0A239DEE8200A8E2EC /* CircleTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleTimerView.swift; sourceTree = "<group>"; };
-		9078AA0F239DF29F00A8E2EC /* ControlButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlButtonView.swift; sourceTree = "<group>"; };
+		9078AA11239E087900A8E2EC /* ResetButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetButtonView.swift; sourceTree = "<group>"; };
+		9078AA13239E091E00A8E2EC /* StartButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartButtonView.swift; sourceTree = "<group>"; };
+		9078AA15239E095300A8E2EC /* AddButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,8 +80,6 @@
 				9078AA0C239DF06C00A8E2EC /* Views */,
 				9078AA01239DA80A00A8E2EC /* ViewModels */,
 				900A7DB52266439A009C052B /* AppDelegate.swift */,
-				900A7DB72266439A009C052B /* ViewController.swift */,
-				900A7DB92266439A009C052B /* Main.storyboard */,
 				900A7DBC2266439A009C052B /* Assets.xcassets */,
 				900A7DBE2266439A009C052B /* LaunchScreen.storyboard */,
 				900A7DC12266439A009C052B /* Info.plist */,
@@ -121,7 +119,9 @@
 			isa = PBXGroup;
 			children = (
 				9078AA0A239DEE8200A8E2EC /* CircleTimerView.swift */,
-				9078AA0F239DF29F00A8E2EC /* ControlButtonView.swift */,
+				9078AA11239E087900A8E2EC /* ResetButtonView.swift */,
+				9078AA13239E091E00A8E2EC /* StartButtonView.swift */,
+				9078AA15239E095300A8E2EC /* AddButtonView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -190,7 +190,6 @@
 			files = (
 				900A7DC02266439A009C052B /* LaunchScreen.storyboard in Resources */,
 				900A7DBD2266439A009C052B /* Assets.xcassets in Resources */,
-				900A7DBB2266439A009C052B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,17 +200,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9078AA12239E087900A8E2EC /* ResetButtonView.swift in Sources */,
 				9078AA06239DAD8B00A8E2EC /* ControlButton.swift in Sources */,
 				9018F499239D46F0005513A2 /* TimerView.swift in Sources */,
-				9078AA10239DF29F00A8E2EC /* ControlButtonView.swift in Sources */,
 				9018F49B239D4873005513A2 /* SceneDelegate.swift in Sources */,
-				900A7DB82266439A009C052B /* ViewController.swift in Sources */,
 				900A7DB62266439A009C052B /* AppDelegate.swift in Sources */,
+				9078AA14239E091E00A8E2EC /* StartButtonView.swift in Sources */,
 				900A7DCD226643B4009C052B /* Numbers.swift in Sources */,
 				900A7DCB226643B4009C052B /* SQLiteHelper.swift in Sources */,
 				9078AA0B239DEE8200A8E2EC /* CircleTimerView.swift in Sources */,
 				9078AA00239DA77200A8E2EC /* TimerViewModel.swift in Sources */,
 				900A7DCC226643B4009C052B /* Interfaces.swift in Sources */,
+				9078AA16239E095300A8E2EC /* AddButtonView.swift in Sources */,
 				9078A9F4239D692900A8E2EC /* CircleTimer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -219,14 +219,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		900A7DB92266439A009C052B /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				900A7DBA2266439A009C052B /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		900A7DBE2266439A009C052B /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

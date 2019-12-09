@@ -20,7 +20,7 @@ struct CircleTimerView: View {
 //                self.timer.isTiming.toggle()
                 self.rootVM.timerTapped(id: self.timer.id)
             }) {
-                Text("00:00")
+                Text("00:\(rootVM.subTimes[timer.id])")
                     .font(.body).foregroundColor(timer.isTiming ? Color(.label) : Color(.secondaryLabel))
                     .padding(28)
                     .background(Circle().fill(timer.isTiming ? Color(.systemGray) : Color(.systemGray5)))
