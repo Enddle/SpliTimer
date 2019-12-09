@@ -15,10 +15,11 @@ class TimerViewModel: ObservableObject {
     
     let rows = 2
     let columns = 3
+    let items = 10
     
     var active = 0 { didSet {didChange.send()} }
-    @Published var timers: [CircleTimer] = [
-        CircleTimer(id: 0, label: "Label 1", isTiming: true)
+    @Published var timers: [STSubTimer] = [
+        STSubTimer(id: 0, label: "Label 1", isTiming: true)
     ]
     
     @Published var isMainTiming = false
@@ -26,6 +27,7 @@ class TimerViewModel: ObservableObject {
     
     var canResetTime = false
     var canAddTimer = true
+    var canAddItemTimer = true
     
     var resetButton = ControlButton(id: 0, icon: "arrow.clockwise", color: Color(.systemGray), color2: Color(.systemGray3))
     var addButton = ControlButton(id: 1, icon: "plus", color: Color(.systemGray), color2: Color(.systemGray3))
@@ -60,12 +62,15 @@ class TimerViewModel: ObservableObject {
         }
     }
     
-    func addTimer() {
-        if (canAddTimer) {
+    func addTimer(isList: Bool = false) {
+        if (canAddTimer || (isList && canAddItemTimer)) {
             let count = timers.count
-            timers.append(CircleTimer(id: count, label: "Label \(count + 1)"))
+            timers.append(STSubTimer(id: count, label: "Label \(count + 1)"))
             if count == rows * columns - 1 {
                 canAddTimer = false
+            }
+            if count == items - 1 {
+                canAddItemTimer = false
             }
         }
     }

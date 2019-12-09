@@ -1,5 +1,5 @@
 //
-//  CircleTimer.swift
+//  STSubTimer.swift
 //  SpliTimer
 //
 //  Created by Enddle Zheng on 12/8/19.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct CircleTimer: Identifiable {
+struct STSubTimer: Identifiable {
     
     var id: Int
     var label: String

@@ -10,12 +10,12 @@ import SwiftUI
 
 struct TimerView: View {
     
-    @ObservedObject var timerVM = TimerViewModel()
+    @EnvironmentObject var timerVM: TimerViewModel
     
     var body: some View {
         VStack(spacing: 80) {
             Text(timerVM.mainTime.display3())
-                .font(.largeTitle)
+                .font(Font.largeTitle.monospacedDigit())
             
             VStack(spacing: 20) {
                 ForEach(0..<timerVM.rows) { i in
@@ -28,9 +28,9 @@ struct TimerView: View {
             }
             
             HStack(alignment: .center) {
-                ResetButtonView(button: $timerVM.resetButton, rootVM: timerVM)
-                AddButtonView(button: $timerVM.addButton, rootVM: timerVM)
-                StartButtonView(button: $timerVM.startButton, rootVM: timerVM)
+                ResetButtonView(button: $timerVM.resetButton)
+                AddButtonView(button: $timerVM.addButton)
+                StartButtonView(button: $timerVM.startButton)
             }
             
         }.padding()
@@ -39,7 +39,7 @@ struct TimerView: View {
     func buildTimerView(_ i: Int, _ j: Int) -> AnyView {
         let n = 3 * i + j
         if (n < timerVM.timers.count) {
-            return AnyView(CircleTimerView(timer: $timerVM.timers[n], rootVM: self.timerVM))
+            return AnyView(CircleTimerView(timer: $timerVM.timers[n]))
         }
         return AnyView(EmptyView())
     }

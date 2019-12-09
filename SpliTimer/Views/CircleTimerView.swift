@@ -10,8 +10,8 @@ import SwiftUI
 
 struct CircleTimerView: View {
     
-    @Binding var timer: CircleTimer
-    @ObservedObject var rootVM: TimerViewModel
+    @Binding var timer: STSubTimer
+    @EnvironmentObject var rootVM: TimerViewModel
     
     var body: some View {
         VStack(spacing: 10) {
@@ -20,7 +20,8 @@ struct CircleTimerView: View {
                 self.rootVM.timerTapped(id: self.timer.id)
             }) {
                 Text(timer.subTime.display2())
-                    .font(.body).foregroundColor(timer.isTiming ? Color(.label) : Color(.secondaryLabel))
+                    .font(Font.body.monospacedDigit())
+                    .foregroundColor(timer.isTiming ? Color(.label) : Color(.secondaryLabel))
                     .padding(28)
                     .background(Circle().fill(timer.isTiming ? Color(.systemGray) : Color(.systemGray5)))
                     .padding(3)

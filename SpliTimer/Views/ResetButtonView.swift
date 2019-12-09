@@ -11,7 +11,7 @@ import SwiftUI
 struct ResetButtonView: View {
     
     @Binding var button: ControlButton
-    @ObservedObject var rootVM: TimerViewModel
+    @EnvironmentObject var rootVM: TimerViewModel
     
     var body: some View {
         
