@@ -24,6 +24,11 @@ struct ContentView: View {
                 Image(systemName: "list.bullet")
                 Text("List")
             }).tag(1)
+            
+            SettingsView().tabItem({
+                Image(systemName: "gear")
+                Text("Settings")
+            }).tag(2)
         }
     }
 }

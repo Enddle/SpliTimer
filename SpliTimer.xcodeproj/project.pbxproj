@@ -26,6 +26,12 @@
 		90AFB22C239EADB4006CFFF0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AFB22B239EADB4006CFFF0 /* ContentView.swift */; };
 		90AFB22E239EAE90006CFFF0 /* TimerListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AFB22D239EAE90006CFFF0 /* TimerListView.swift */; };
 		90AFB230239EC3C3006CFFF0 /* ItemTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AFB22F239EC3C3006CFFF0 /* ItemTimerView.swift */; };
+		90AFB23E239F11C3006CFFF0 /* Icon-alt-1-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90AFB23C239F11C3006CFFF0 /* Icon-alt-1-60@2x.png */; };
+		90AFB23F239F11C3006CFFF0 /* Icon-alt-1-60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90AFB23D239F11C3006CFFF0 /* Icon-alt-1-60@3x.png */; };
+		90AFB242239F11D2006CFFF0 /* Icon-alt-2-60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90AFB240239F11D2006CFFF0 /* Icon-alt-2-60@3x.png */; };
+		90AFB243239F11D2006CFFF0 /* Icon-alt-2-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90AFB241239F11D2006CFFF0 /* Icon-alt-2-60@2x.png */; };
+		90AFB245239F1222006CFFF0 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AFB244239F1222006CFFF0 /* SettingsView.swift */; };
+		90AFB247239F180E006CFFF0 /* AppIconUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AFB246239F180E006CFFF0 /* AppIconUtil.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +56,12 @@
 		90AFB22B239EADB4006CFFF0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		90AFB22D239EAE90006CFFF0 /* TimerListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerListView.swift; sourceTree = "<group>"; };
 		90AFB22F239EC3C3006CFFF0 /* ItemTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTimerView.swift; sourceTree = "<group>"; };
+		90AFB23C239F11C3006CFFF0 /* Icon-alt-1-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-alt-1-60@2x.png"; sourceTree = "<group>"; };
+		90AFB23D239F11C3006CFFF0 /* Icon-alt-1-60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-alt-1-60@3x.png"; sourceTree = "<group>"; };
+		90AFB240239F11D2006CFFF0 /* Icon-alt-2-60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-alt-2-60@3x.png"; sourceTree = "<group>"; };
+		90AFB241239F11D2006CFFF0 /* Icon-alt-2-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-alt-2-60@2x.png"; sourceTree = "<group>"; };
+		90AFB244239F1222006CFFF0 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		90AFB246239F180E006CFFF0 /* AppIconUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconUtil.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +101,7 @@
 				9078AA01239DA80A00A8E2EC /* ViewModels */,
 				900A7DB52266439A009C052B /* AppDelegate.swift */,
 				900A7DBC2266439A009C052B /* Assets.xcassets */,
+				90AFB231239F042D006CFFF0 /* AlternativeIcons */,
 				900A7DBE2266439A009C052B /* LaunchScreen.storyboard */,
 				900A7DC12266439A009C052B /* Info.plist */,
 				900A7DC7226643B4009C052B /* Utils */,
@@ -102,6 +115,7 @@
 				900A7DC8226643B4009C052B /* SQLiteHelper.swift */,
 				900A7DC9226643B4009C052B /* Interfaces.swift */,
 				900A7DCA226643B4009C052B /* Numbers.swift */,
+				90AFB246239F180E006CFFF0 /* AppIconUtil.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -134,8 +148,36 @@
 				9078AA15239E095300A8E2EC /* AddButtonView.swift */,
 				90AFB22D239EAE90006CFFF0 /* TimerListView.swift */,
 				90AFB22F239EC3C3006CFFF0 /* ItemTimerView.swift */,
+				90AFB244239F1222006CFFF0 /* SettingsView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		90AFB231239F042D006CFFF0 /* AlternativeIcons */ = {
+			isa = PBXGroup;
+			children = (
+				90AFB232239F04F0006CFFF0 /* greyIcon */,
+				90AFB233239F0511006CFFF0 /* greyLineIcon */,
+			);
+			path = AlternativeIcons;
+			sourceTree = "<group>";
+		};
+		90AFB232239F04F0006CFFF0 /* greyIcon */ = {
+			isa = PBXGroup;
+			children = (
+				90AFB23C239F11C3006CFFF0 /* Icon-alt-1-60@2x.png */,
+				90AFB23D239F11C3006CFFF0 /* Icon-alt-1-60@3x.png */,
+			);
+			path = greyIcon;
+			sourceTree = "<group>";
+		};
+		90AFB233239F0511006CFFF0 /* greyLineIcon */ = {
+			isa = PBXGroup;
+			children = (
+				90AFB241239F11D2006CFFF0 /* Icon-alt-2-60@2x.png */,
+				90AFB240239F11D2006CFFF0 /* Icon-alt-2-60@3x.png */,
+			);
+			path = greyLineIcon;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,7 +242,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90AFB243239F11D2006CFFF0 /* Icon-alt-2-60@2x.png in Resources */,
+				90AFB23E239F11C3006CFFF0 /* Icon-alt-1-60@2x.png in Resources */,
+				90AFB23F239F11C3006CFFF0 /* Icon-alt-1-60@3x.png in Resources */,
 				900A7DC02266439A009C052B /* LaunchScreen.storyboard in Resources */,
+				90AFB242239F11D2006CFFF0 /* Icon-alt-2-60@3x.png in Resources */,
 				900A7DBD2266439A009C052B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -215,6 +261,7 @@
 				90AFB22E239EAE90006CFFF0 /* TimerListView.swift in Sources */,
 				9078AA12239E087900A8E2EC /* ResetButtonView.swift in Sources */,
 				9078AA06239DAD8B00A8E2EC /* ControlButton.swift in Sources */,
+				90AFB245239F1222006CFFF0 /* SettingsView.swift in Sources */,
 				9018F499239D46F0005513A2 /* TimerView.swift in Sources */,
 				9018F49B239D4873005513A2 /* SceneDelegate.swift in Sources */,
 				900A7DB62266439A009C052B /* AppDelegate.swift in Sources */,
@@ -224,6 +271,7 @@
 				90AFB22A239E9B11006CFFF0 /* STTime.swift in Sources */,
 				900A7DCB226643B4009C052B /* SQLiteHelper.swift in Sources */,
 				9078AA0B239DEE8200A8E2EC /* CircleTimerView.swift in Sources */,
+				90AFB247239F180E006CFFF0 /* AppIconUtil.swift in Sources */,
 				9078AA00239DA77200A8E2EC /* TimerViewModel.swift in Sources */,
 				90AFB22C239EADB4006CFFF0 /* ContentView.swift in Sources */,
 				900A7DCC226643B4009C052B /* Interfaces.swift in Sources */,
