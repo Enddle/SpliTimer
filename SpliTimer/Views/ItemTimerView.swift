@@ -13,11 +13,21 @@ struct ItemTimerView: View {
     @Binding var timer: STSubTimer
     @EnvironmentObject var rootVM: TimerViewModel
     
+    @State private var disableEdit: Bool = true
+    
     var body: some View {
         HStack {
-            Text(timer.label)
-                .font(.title)
+            TextField("Timer Name", text: $timer.label, onCommit: {
+                self.disableEdit = true
+            })
+                .font(.body)
                 .foregroundColor(timer.isTiming ? Color(.label) : Color(.secondaryLabel))
+                .disableAutocorrection(true)
+                .disabled(disableEdit)
+                .onTapGesture {
+                    self.disableEdit = false
+            }
+            
             Spacer()
 
             Button (action: {

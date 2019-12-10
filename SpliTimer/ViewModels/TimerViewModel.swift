@@ -19,7 +19,7 @@ class TimerViewModel: ObservableObject {
     
     var active = 0 { didSet {didChange.send()} }
     @Published var timers: [STSubTimer] = [
-        STSubTimer(id: 0, label: "Label 1", isTiming: true)
+        STSubTimer(id: 0, label: "SpliTimer 1", isTiming: true)
     ]
     
     @Published var isMainTiming = false
@@ -38,8 +38,9 @@ class TimerViewModel: ObservableObject {
     var timer = Timer()
     
     func startTimer() {
-        if (!isMainTiming) {
-            timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(action), userInfo: nil, repeats: true)
+        if !isMainTiming {
+            timer = Timer(timeInterval: 0.01, target: self, selector: #selector(action), userInfo: nil, repeats: true)
+            RunLoop.current.add(timer, forMode: RunLoop.Mode.common)
             isMainTiming = true
             canResetTime = true
             
@@ -51,7 +52,7 @@ class TimerViewModel: ObservableObject {
     }
     
     func resetTimer() {
-        if (canResetTime) {
+        if canResetTime {
             timer.invalidate()
             mainTime.raw = 0
             for n in 0..<timers.count {
@@ -65,7 +66,7 @@ class TimerViewModel: ObservableObject {
     func addTimer(isList: Bool = false) {
         if (canAddTimer || (isList && canAddItemTimer)) {
             let count = timers.count
-            timers.append(STSubTimer(id: count, label: "Label \(count + 1)"))
+            timers.append(STSubTimer(id: count, label: "SpliTimer \(count + 1)"))
             if count == rows * columns - 1 {
                 canAddTimer = false
             }

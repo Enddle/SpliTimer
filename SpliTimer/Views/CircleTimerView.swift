@@ -13,6 +13,8 @@ struct CircleTimerView: View {
     @Binding var timer: STSubTimer
     @EnvironmentObject var rootVM: TimerViewModel
     
+    @State private var disableEdit: Bool = true
+    
     var body: some View {
         VStack(spacing: 10) {
             
@@ -28,8 +30,17 @@ struct CircleTimerView: View {
                     .overlay(Circle().stroke(timer.isTiming ? Color(.systemGray) : Color(.systemGray5), lineWidth: 2))
             }
             
-            Text(timer.label)
-                .font(.body).foregroundColor(timer.isTiming ? Color(.label) : Color(.secondaryLabel))
+            TextField("Timer Name", text: $timer.label, onCommit: {
+                self.disableEdit = true
+            })
+                .font(.body).multilineTextAlignment(.center)
+                .foregroundColor(timer.isTiming ? Color(.label) : Color(.secondaryLabel))
+                .disableAutocorrection(true)
+                .disabled(disableEdit)
+                .onTapGesture {
+                    self.disableEdit = false
+            }
+            
         }
     }
 }
