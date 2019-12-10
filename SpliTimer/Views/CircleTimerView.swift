@@ -25,9 +25,9 @@ struct CircleTimerView: View {
                     .font(Font.body.monospacedDigit())
                     .foregroundColor(timer.isTiming ? Color(.label) : Color(.secondaryLabel))
                     .padding(28)
-                    .background(Circle().fill(timer.isTiming ? Color(.systemGray) : Color(.systemGray5)))
+                    .background(Circle().fill(timer.isTiming ? Color(.systemGray4) : Color(.systemGray6)))
                     .padding(3)
-                    .overlay(Circle().stroke(timer.isTiming ? Color(.systemGray) : Color(.systemGray5), lineWidth: 2))
+                    .overlay(Circle().stroke(timer.isTiming ? Color(.systemGray4) : Color(.systemGray6), lineWidth: 2))
             }
             
             TextField("Timer Name", text: $timer.label, onCommit: {

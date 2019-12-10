@@ -33,6 +33,7 @@
 		90AFB245239F1222006CFFF0 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AFB244239F1222006CFFF0 /* SettingsView.swift */; };
 		90AFB247239F180E006CFFF0 /* AppIconUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AFB246239F180E006CFFF0 /* AppIconUtil.swift */; };
 		90AFB249239F48E2006CFFF0 /* HapticFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AFB248239F48E2006CFFF0 /* HapticFeedback.swift */; };
+		90AFB24B23A04FA3006CFFF0 /* Basics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AFB24A23A04FA3006CFFF0 /* Basics.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		90AFB244239F1222006CFFF0 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		90AFB246239F180E006CFFF0 /* AppIconUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconUtil.swift; sourceTree = "<group>"; };
 		90AFB248239F48E2006CFFF0 /* HapticFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticFeedback.swift; sourceTree = "<group>"; };
+		90AFB24A23A04FA3006CFFF0 /* Basics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Basics.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 				900A7DCA226643B4009C052B /* Numbers.swift */,
 				90AFB246239F180E006CFFF0 /* AppIconUtil.swift */,
 				90AFB248239F48E2006CFFF0 /* HapticFeedback.swift */,
+				90AFB24A23A04FA3006CFFF0 /* Basics.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90AFB24B23A04FA3006CFFF0 /* Basics.swift in Sources */,
 				90AFB22E239EAE90006CFFF0 /* TimerListView.swift in Sources */,
 				9078AA12239E087900A8E2EC /* ResetButtonView.swift in Sources */,
 				9078AA06239DAD8B00A8E2EC /* ControlButton.swift in Sources */,

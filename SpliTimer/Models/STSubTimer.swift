@@ -14,6 +14,8 @@ struct STSubTimer: Identifiable {
     var label: String
     var isTiming: Bool
     
+    var isRemoved = false
+    
     var subTime = STTime()
     
     init(id: Int, label: String, isTiming: Bool = false) {

@@ -17,16 +17,16 @@ struct STTime: Identifiable {
     
     func display3() -> String {
         
-        let mili = ("00" + String(raw)).suffix(2)
-        let sec = ("00" + String(raw / 100 % 60)).suffix(2)
-        let min = ("00" + String(raw / 6000)).suffix(2)
+        let mili = ("0" + String(raw)).suffix(1)
+        let sec = ("00" + String(raw / 10 % 60)).suffix(2)
+        let min = ("00" + String(raw / 600)).suffix(2)
         return "\(min):\(sec).\(mili)"
     }
     
     func display2() -> String {
         
-        let sec = ("00" + String(raw / 100 % 60)).suffix(2)
-        let min = ("00" + String(raw / 6000)).suffix(2)
+        let sec = ("00" + String(raw / 10 % 60)).suffix(2)
+        let min = ("00" + String(raw / 600)).suffix(2)
         return "\(min):\(sec)"
     }
 }

@@ -36,6 +36,7 @@ struct ItemTimerView: View {
             }) {
                 Text(timer.subTime.display3())
                     .font(Font.title.monospacedDigit())
+                    .fontWeight(timer.isTiming ? .regular : .light)
                     .foregroundColor(timer.isTiming ? Color(.label) : Color(.secondaryLabel))
             }
         }.padding()

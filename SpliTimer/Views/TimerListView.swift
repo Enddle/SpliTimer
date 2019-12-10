@@ -24,36 +24,57 @@ struct TimerListView: View {
                 self.timerVM.resetTimer()
             })
         
-        return List {
+        return VStack {
             HStack {
                 Spacer()
                 Text(timerVM.mainTime.display3())
-                    .font(Font.largeTitle.monospacedDigit())
-            }.padding()
+                    .font(Font.system(size: 40).monospacedDigit())
+                    .fontWeight(.thin)
+                    .padding(.top, 20)
+            }.padding([.horizontal])
             .gesture(mainTap)
             .gesture(mainHold)
             
-            ForEach(0..<timerVM.items) { n in
-                self.buildTimerView(n)
-            }
-            
-            Button (action: {
-                self.timerVM.addTimer(isList: true)
-            }) {
-                HStack {
-                    Spacer()
-                    Image(systemName: "plus")
-                        .font(.title)
-                        .foregroundColor(timerVM.canAddItemTimer ? Color(.secondaryLabel) : Color(.quaternaryLabel))
-                    Spacer()
-                }.padding()
+            List {
+                ForEach(0..<timerVM.items) { n in
+                    self.buildTimerView(n)
+                }
+                .onDelete(perform: deleteTimerView)
+                
+                self.showAddItemButton()
             }
         }
     }
     
     func buildTimerView(_ n: Int) -> AnyView {
-        if (n < timerVM.timers.count) {
-            return AnyView(ItemTimerView(timer: $timerVM.timers[n]))
+        if (timerVM.timers.indices ~= n) {
+            if !timerVM.timers[n].isRemoved {
+                return AnyView(ItemTimerView(timer: $timerVM.timers[n]))
+            }
+        }
+        return AnyView(EmptyView())
+    }
+    
+    func deleteTimerView(at offsets: IndexSet) {
+        if offsets.count == 1 {
+            timerVM.removeTimer(index: offsets.first!)
+        }
+    }
+    
+    func showAddItemButton() -> AnyView {
+        if self.timerVM.canAddItemTimer {
+            return AnyView(
+                Button (action: {
+                    self.timerVM.addTimer(isList: true)
+                }) {
+                    HStack {
+                        Spacer()
+                        Image(systemName: "plus")
+                            .font(.title)
+                            .foregroundColor(Color(.secondaryLabel))
+                        Spacer()
+                    }.padding()
+                })
         }
         return AnyView(EmptyView())
     }

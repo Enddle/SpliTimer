@@ -18,8 +18,9 @@ class TimerViewModel: ObservableObject {
     let items = 10
     
     var active = 0 { didSet {didChange.send()} }
+    var activeId = 0
     @Published var timers: [STSubTimer] = [
-        STSubTimer(id: 0, label: "SpliTimer 1", isTiming: true)
+        STSubTimer(id: 0, label: "SpliTimer 0", isTiming: true)
     ]
     
     @Published var isMainTiming = false
@@ -45,7 +46,7 @@ class TimerViewModel: ObservableObject {
             } else {
                 haptic.success()
             }
-            timer = Timer(timeInterval: 0.01, target: self, selector: #selector(action), userInfo: nil, repeats: true)
+            timer = Timer(timeInterval: 0.1, target: self, selector: #selector(action), userInfo: nil, repeats: true)
             RunLoop.current.add(timer, forMode: RunLoop.Mode.common)
             isMainTiming = true
             canResetTime = true
@@ -63,7 +64,7 @@ class TimerViewModel: ObservableObject {
             haptic.success()
             timer.invalidate()
             mainTime.raw = 0
-            for n in 0..<timers.count {
+            for n in timers.indices {  // loop all
                 timers[n].subTime.raw = 0
             }
             canResetTime = false
@@ -76,24 +77,62 @@ class TimerViewModel: ObservableObject {
     func addTimer(isList: Bool = false) {
         if (canAddTimer || (isList && canAddItemTimer)) {
             haptic.selection()
-            let count = timers.count
-            timers.append(STSubTimer(id: count, label: "SpliTimer \(count + 1)"))
-            if count == rows * columns - 1 {
-                canAddTimer = false
+            
+            let id = (timers.last(where: {!$0.isRemoved})?.id ?? -1) + 1
+            
+            if let reuseOffset = timers.firstIndex(where: {$0.isRemoved}) {  // reuse hidden timer
+                timers[reuseOffset] = STSubTimer(id: id, label: "SpliTimer \(id)")
+                print("reusing \(reuseOffset) as \(id)")
+            } else {
+                
+                timers.append(STSubTimer(id: id, label: "SpliTimer \(id)"))
             }
-            if count == items - 1 {
-                canAddItemTimer = false
-            }
+            countTimers()
         } else {
             haptic.error()
         }
     }
     
+    func removeTimer(index: Int) {
+        if timers.indices ~= index {
+            
+            timers[index].isRemoved = true  // hide for reuse
+            timers.move(fromOffsets: [index], toOffset: timers.indices.endIndex)
+            
+            if let activeOffset = timers.firstIndex(where: {$0.id == activeId && !$0.isRemoved}) {
+                self.active = activeOffset
+            } else {
+                timerTapped(index: timers.firstIndex(where: {!$0.isRemoved}) ?? 0)
+            }
+            countTimers()
+        }
+    }
+    
+    func countTimers() {
+        let count = timers.count {!$0.isRemoved}
+        canAddTimer = (count < rows * columns)
+        canAddItemTimer = (count < items)
+    }
+    
     func timerTapped(id: Int) {
         haptic.selection()
-        active = id
-        for n in 0..<timers.count {
+        activeId = id
+        for n in timers.indices {  // loop all
+            if timers[n].id == activeId {
+                active = n
+                timers[active].isTiming = true
+            } else {
+                timers[n].isTiming = false
+            }
+        }
+    }
+    
+    func timerTapped(index: Int) {
+        haptic.selection()
+        active = index
+        for n in timers.indices {  // loop all
             if n == active {
+                activeId = timers[active].id
                 timers[active].isTiming = true
             } else {
                 timers[n].isTiming = false
