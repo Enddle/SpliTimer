@@ -32,6 +32,7 @@
 		90AFB243239F11D2006CFFF0 /* Icon-alt-2-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90AFB241239F11D2006CFFF0 /* Icon-alt-2-60@2x.png */; };
 		90AFB245239F1222006CFFF0 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AFB244239F1222006CFFF0 /* SettingsView.swift */; };
 		90AFB247239F180E006CFFF0 /* AppIconUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AFB246239F180E006CFFF0 /* AppIconUtil.swift */; };
+		90AFB249239F48E2006CFFF0 /* HapticFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AFB248239F48E2006CFFF0 /* HapticFeedback.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		90AFB241239F11D2006CFFF0 /* Icon-alt-2-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-alt-2-60@2x.png"; sourceTree = "<group>"; };
 		90AFB244239F1222006CFFF0 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		90AFB246239F180E006CFFF0 /* AppIconUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconUtil.swift; sourceTree = "<group>"; };
+		90AFB248239F48E2006CFFF0 /* HapticFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticFeedback.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 				900A7DC9226643B4009C052B /* Interfaces.swift */,
 				900A7DCA226643B4009C052B /* Numbers.swift */,
 				90AFB246239F180E006CFFF0 /* AppIconUtil.swift */,
+				90AFB248239F48E2006CFFF0 /* HapticFeedback.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -275,6 +278,7 @@
 				9078AA00239DA77200A8E2EC /* TimerViewModel.swift in Sources */,
 				90AFB22C239EADB4006CFFF0 /* ContentView.swift in Sources */,
 				900A7DCC226643B4009C052B /* Interfaces.swift in Sources */,
+				90AFB249239F48E2006CFFF0 /* HapticFeedback.swift in Sources */,
 				9078AA16239E095300A8E2EC /* AddButtonView.swift in Sources */,
 				9078A9F4239D692900A8E2EC /* STSubTimer.swift in Sources */,
 			);

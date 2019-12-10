@@ -36,15 +36,22 @@ class TimerViewModel: ObservableObject {
     let didChange = PassthroughSubject<Void, Never>()
     
     var timer = Timer()
+    let haptic = HapticFeedback()
     
     func startTimer() {
         if !isMainTiming {
+            if canResetTime {
+                haptic.selection()
+            } else {
+                haptic.success()
+            }
             timer = Timer(timeInterval: 0.01, target: self, selector: #selector(action), userInfo: nil, repeats: true)
             RunLoop.current.add(timer, forMode: RunLoop.Mode.common)
             isMainTiming = true
             canResetTime = true
             
         } else {
+            haptic.selection()
             timer.invalidate()
             isMainTiming = false
         }
@@ -53,6 +60,7 @@ class TimerViewModel: ObservableObject {
     
     func resetTimer() {
         if canResetTime {
+            haptic.success()
             timer.invalidate()
             mainTime.raw = 0
             for n in 0..<timers.count {
@@ -60,11 +68,14 @@ class TimerViewModel: ObservableObject {
             }
             canResetTime = false
             isMainTiming = false
+        } else {
+            haptic.lightImpact()
         }
     }
     
     func addTimer(isList: Bool = false) {
         if (canAddTimer || (isList && canAddItemTimer)) {
+            haptic.selection()
             let count = timers.count
             timers.append(STSubTimer(id: count, label: "SpliTimer \(count + 1)"))
             if count == rows * columns - 1 {
@@ -73,10 +84,13 @@ class TimerViewModel: ObservableObject {
             if count == items - 1 {
                 canAddItemTimer = false
             }
+        } else {
+            haptic.error()
         }
     }
     
     func timerTapped(id: Int) {
+        haptic.selection()
         active = id
         for n in 0..<timers.count {
             if n == active {

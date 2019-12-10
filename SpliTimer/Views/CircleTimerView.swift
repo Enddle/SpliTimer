@@ -39,6 +39,7 @@ struct CircleTimerView: View {
                 .disabled(disableEdit)
                 .onTapGesture {
                     self.disableEdit = false
+                    self.rootVM.haptic.selection()
             }
             
         }
