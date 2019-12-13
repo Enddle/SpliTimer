@@ -25,5 +25,6 @@ struct ResetButtonView: View {
                 .padding(3)
                 .overlay(Circle().stroke(rootVM.canResetTime ? button.color.opacity(0.2) : button.color2.opacity(0.2), lineWidth: 2))
         }
+        .frame(width: 110, height: 110)
     }
 }

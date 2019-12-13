@@ -29,6 +29,7 @@ struct CircleTimerView: View {
                     .padding(3)
                     .overlay(Circle().stroke(timer.isTiming ? Color(.systemGray4) : Color(.systemGray6), lineWidth: 2))
             }
+            .frame(width: 110, height: 110)
             
             TextField("Timer Name", text: $timer.label, onCommit: {
                 self.disableEdit = true

@@ -11,24 +11,30 @@ import SwiftUI
 struct ContentView: View {
     
     @State var selected: Int = 0
+    @EnvironmentObject var appearance: AppearanceEnvironment
     
     var body: some View {
-        TabView (selection: $selected) {
+        GeometryReader { geometry in
             
-            TimerView().tabItem({
-                Image(systemName: "timer")
-                Text("Timer")
-            }).tag(0)
-            
-            TimerListView().tabItem({
-                Image(systemName: "list.bullet")
-                Text("List")
-            }).tag(1)
-            
-            SettingsView().tabItem({
-                Image(systemName: "gear")
-                Text("Settings")
-            }).tag(2)
+            if self.appearance.geometryInfo(geometry) {
+
+                TabView (selection: self.$selected) {
+                    TimerView().tabItem({
+                        Image(systemName: "timer")
+                        Text("Timer")
+                    }).tag(0)
+                    
+                    TimerListView().tabItem({
+                        Image(systemName: "list.bullet")
+                        Text("List")
+                    }).tag(1)
+                    
+                    SettingsView().tabItem({
+                        Image(systemName: "gear")
+                        Text("Settings")
+                    }).tag(2)
+                }
+            }
         }
     }
 }

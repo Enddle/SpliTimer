@@ -11,6 +11,7 @@ import SwiftUI
 struct TimerListView: View {
     
     @EnvironmentObject var timerVM: TimerViewModel
+    @EnvironmentObject var appearance: AppearanceEnvironment
     
     var body: some View {
         
@@ -41,7 +42,8 @@ struct TimerListView: View {
                 }
                 .onDelete(perform: deleteTimerView)
                 
-                self.showAddItemButton()
+                AddItemButtonView()
+                    .listRowInsets(appearance.keyboardInset)
             }
         }
     }
@@ -59,24 +61,6 @@ struct TimerListView: View {
         if offsets.count == 1 {
             timerVM.removeTimer(index: offsets.first!)
         }
-    }
-    
-    func showAddItemButton() -> AnyView {
-        if self.timerVM.canAddItemTimer {
-            return AnyView(
-                Button (action: {
-                    self.timerVM.addTimer(isList: true)
-                }) {
-                    HStack {
-                        Spacer()
-                        Image(systemName: "plus")
-                            .font(.title)
-                            .foregroundColor(Color(.secondaryLabel))
-                        Spacer()
-                    }.padding()
-                })
-        }
-        return AnyView(EmptyView())
     }
 }
 

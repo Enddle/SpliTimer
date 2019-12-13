@@ -11,34 +11,66 @@ import SwiftUI
 struct TimerView: View {
     
     @EnvironmentObject var timerVM: TimerViewModel
+    @EnvironmentObject var appearance: AppearanceEnvironment
     
     var body: some View {
-        VStack {
-            Text(timerVM.mainTime.display3())
-                .font(Font.system(size: 80).monospacedDigit())
-                .fontWeight(.ultraLight)
-                .padding(.top, 60)
+        
+        GeometryReader { geometry in
             
-            Spacer()
-            
-            VStack(spacing: 20) {
-                ForEach(0..<timerVM.rows) { i in
-                    HStack(alignment: .center, spacing: 0) {
-                        ForEach(0..<self.timerVM.columns) { j in
-                            self.buildTimerView(i, j)
+            if geometry.size.height > self.appearance.minHeightForPortrait {
+
+                VStack {
+                    Text(self.timerVM.mainTime.display3())
+                        .font(Font.system(size: 80).monospacedDigit())
+                        .fontWeight(.ultraLight)
+                        .padding(.top, 60)
+                    
+                    Spacer()
+                    
+                    VStack(spacing: 20) {
+                        ForEach(0..<self.timerVM.rows) { i in
+                            HStack(alignment: .center, spacing: 0) {
+                                ForEach(0..<self.timerVM.columns) { j in
+                                    self.buildTimerView(i, j)
+                                }
+                            }
                         }
+                    }.padding()
+                    
+                    Spacer()
+                    
+                    HStack(alignment: .center) {
+                        ResetButtonView(button: self.$timerVM.resetButton)
+                        AddButtonView(button: self.$timerVM.addButton)
+                        StartButtonView(button: self.$timerVM.startButton)
+                    }.padding(.bottom, 60)
+                    
+                }
+            } else {
+                
+                HStack {
+                    
+                    Text(self.timerVM.mainTime.display3())
+                        .font(Font.system(size: 80).monospacedDigit())
+                        .fontWeight(.ultraLight)
+                    
+                    VStack(spacing: 20) {
+                        ForEach(0..<self.timerVM.rows) { i in
+                            HStack(alignment: .center, spacing: 0) {
+                                ForEach(0..<self.timerVM.columns) { j in
+                                    self.buildTimerView(i, j)
+                                }
+                            }
+                        }
+                    }.padding()
+                    
+                    VStack {
+                        ResetButtonView(button: self.$timerVM.resetButton)
+                        AddButtonView(button: self.$timerVM.addButton)
+                        StartButtonView(button: self.$timerVM.startButton)
                     }
                 }
-            }.padding()
-            
-            Spacer()
-            
-            HStack(alignment: .center) {
-                ResetButtonView(button: $timerVM.resetButton)
-                AddButtonView(button: $timerVM.addButton)
-                StartButtonView(button: $timerVM.startButton)
-            }.padding(.bottom, 60)
-            
+            }
         }
     }
     

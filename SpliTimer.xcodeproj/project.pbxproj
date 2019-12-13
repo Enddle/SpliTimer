@@ -22,6 +22,8 @@
 		9078AA12239E087900A8E2EC /* ResetButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9078AA11239E087900A8E2EC /* ResetButtonView.swift */; };
 		9078AA14239E091E00A8E2EC /* StartButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9078AA13239E091E00A8E2EC /* StartButtonView.swift */; };
 		9078AA16239E095300A8E2EC /* AddButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9078AA15239E095300A8E2EC /* AddButtonView.swift */; };
+		90A48F4923A30EA8006F27BD /* AppearanceEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A48F4823A30EA8006F27BD /* AppearanceEnvironment.swift */; };
+		90A48F4B23A314EE006F27BD /* AddItemButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A48F4A23A314EE006F27BD /* AddItemButtonView.swift */; };
 		90AFB22A239E9B11006CFFF0 /* STTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AFB229239E9B11006CFFF0 /* STTime.swift */; };
 		90AFB22C239EADB4006CFFF0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AFB22B239EADB4006CFFF0 /* ContentView.swift */; };
 		90AFB22E239EAE90006CFFF0 /* TimerListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AFB22D239EAE90006CFFF0 /* TimerListView.swift */; };
@@ -54,6 +56,8 @@
 		9078AA11239E087900A8E2EC /* ResetButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetButtonView.swift; sourceTree = "<group>"; };
 		9078AA13239E091E00A8E2EC /* StartButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartButtonView.swift; sourceTree = "<group>"; };
 		9078AA15239E095300A8E2EC /* AddButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButtonView.swift; sourceTree = "<group>"; };
+		90A48F4823A30EA8006F27BD /* AppearanceEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceEnvironment.swift; sourceTree = "<group>"; };
+		90A48F4A23A314EE006F27BD /* AddItemButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemButtonView.swift; sourceTree = "<group>"; };
 		90AFB229239E9B11006CFFF0 /* STTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STTime.swift; sourceTree = "<group>"; };
 		90AFB22B239EADB4006CFFF0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		90AFB22D239EAE90006CFFF0 /* TimerListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerListView.swift; sourceTree = "<group>"; };
@@ -130,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				9078A9FF239DA77200A8E2EC /* TimerViewModel.swift */,
+				90A48F4823A30EA8006F27BD /* AppearanceEnvironment.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -154,6 +159,7 @@
 				9078AA15239E095300A8E2EC /* AddButtonView.swift */,
 				90AFB22D239EAE90006CFFF0 /* TimerListView.swift */,
 				90AFB22F239EC3C3006CFFF0 /* ItemTimerView.swift */,
+				90A48F4A23A314EE006F27BD /* AddItemButtonView.swift */,
 				90AFB244239F1222006CFFF0 /* SettingsView.swift */,
 			);
 			path = Views;
@@ -277,6 +283,7 @@
 				900A7DCD226643B4009C052B /* Numbers.swift in Sources */,
 				90AFB22A239E9B11006CFFF0 /* STTime.swift in Sources */,
 				900A7DCB226643B4009C052B /* SQLiteHelper.swift in Sources */,
+				90A48F4923A30EA8006F27BD /* AppearanceEnvironment.swift in Sources */,
 				9078AA0B239DEE8200A8E2EC /* CircleTimerView.swift in Sources */,
 				90AFB247239F180E006CFFF0 /* AppIconUtil.swift in Sources */,
 				9078AA00239DA77200A8E2EC /* TimerViewModel.swift in Sources */,
@@ -285,6 +292,7 @@
 				90AFB249239F48E2006CFFF0 /* HapticFeedback.swift in Sources */,
 				9078AA16239E095300A8E2EC /* AddButtonView.swift in Sources */,
 				9078A9F4239D692900A8E2EC /* STSubTimer.swift in Sources */,
+				90A48F4B23A314EE006F27BD /* AddItemButtonView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
