@@ -15,10 +15,12 @@ class AppearanceEnvironment: ObservableObject {
     let notification = NotificationCenter.default
     
     @Published var keyboardInset = EdgeInsets()
-    var safeArea = EdgeInsets()
+    var safeAreaInsets = EdgeInsets()
     
-    let minHeightForPortrait: CGFloat = 350
+    let minHeightForPortrait: CGFloat = 499.0  // iPhone SE (13.2) safe area height
     @Published var layoutPortrait = true
+    
+    let didChange = PassthroughSubject<Void, Never>()
     
     init() {
         notification.addObserver(self, selector: #selector(keyboardAdjust), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -33,12 +35,22 @@ class AppearanceEnvironment: ObservableObject {
         if notification.name == UIResponder.keyboardWillHideNotification {
             self.keyboardInset = EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
         } else {
-            self.keyboardInset = EdgeInsets(top: 0, leading: 0, bottom: keyboardFrame.height - safeArea.bottom, trailing: 0)
+            self.keyboardInset = EdgeInsets(top: 0, leading: 0, bottom: keyboardFrame.height - safeAreaInsets.bottom, trailing: 0)
         }
     }
     
-    func geometryInfo(_ geometry: GeometryProxy) -> Bool {
-        safeArea = geometry.safeAreaInsets
-        return true
+    /**
+     Tells if the view should be layout in portrait mode, provide geometry infomation for the appearance model.
+     
+     - returns:
+     isLayoutPortrait: Bool
+     
+     - parameters:
+         - geometry: GeometryProxy of a view
+     */
+    
+    func isLayoutPortrait(_ geometry: GeometryProxy) -> Bool {
+        safeAreaInsets = geometry.safeAreaInsets
+        return geometry.size.height >= minHeightForPortrait
     }
 }

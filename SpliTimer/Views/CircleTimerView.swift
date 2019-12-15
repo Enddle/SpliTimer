@@ -16,7 +16,7 @@ struct CircleTimerView: View {
     @State private var disableEdit: Bool = true
     
     var body: some View {
-        VStack(spacing: 10) {
+        VStack(spacing: 0) {
             
             Button(action: {
                 self.rootVM.timerTapped(id: self.timer.id)
@@ -24,18 +24,19 @@ struct CircleTimerView: View {
                 Text(timer.subTime.display2())
                     .font(Font.body.monospacedDigit())
                     .foregroundColor(timer.isTiming ? Color(.label) : Color(.secondaryLabel))
-                    .padding(28)
+                    .padding(24)
                     .background(Circle().fill(timer.isTiming ? Color(.systemGray4) : Color(.systemGray6)))
                     .padding(3)
                     .overlay(Circle().stroke(timer.isTiming ? Color(.systemGray4) : Color(.systemGray6), lineWidth: 2))
             }
-            .frame(width: 110, height: 110)
+            .frame(width: 100, height: 100)
             
             TextField("Timer Name", text: $timer.label, onCommit: {
                 self.disableEdit = true
             })
                 .font(.body).multilineTextAlignment(.center)
                 .foregroundColor(timer.isTiming ? Color(.label) : Color(.secondaryLabel))
+                .frame(width: 90, height: 10)
                 .disableAutocorrection(true)
                 .disabled(disableEdit)
                 .onTapGesture {

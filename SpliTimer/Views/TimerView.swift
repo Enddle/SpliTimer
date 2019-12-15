@@ -17,65 +17,76 @@ struct TimerView: View {
         
         GeometryReader { geometry in
             
-            if geometry.size.height > self.appearance.minHeightForPortrait {
+            if self.appearance.isLayoutPortrait(geometry) {
 
-                VStack {
-                    Text(self.timerVM.mainTime.display3())
-                        .font(Font.system(size: 80).monospacedDigit())
-                        .fontWeight(.ultraLight)
-                        .padding(.top, 60)
-                    
+                VStack (alignment: .center) {
                     Spacer()
-                    
-                    VStack(spacing: 20) {
-                        ForEach(0..<self.timerVM.rows) { i in
-                            HStack(alignment: .center, spacing: 0) {
-                                ForEach(0..<self.timerVM.columns) { j in
-                                    self.buildTimerView(i, j)
-                                }
-                            }
-                        }
-                    }.padding()
-                    
-                    Spacer()
-                    
-                    HStack(alignment: .center) {
-                        ResetButtonView(button: self.$timerVM.resetButton)
-                        AddButtonView(button: self.$timerVM.addButton)
-                        StartButtonView(button: self.$timerVM.startButton)
-                    }.padding(.bottom, 60)
-                    
-                }
-            } else {
-                
-                HStack {
                     
                     Text(self.timerVM.mainTime.display3())
                         .font(Font.system(size: 80).monospacedDigit())
                         .fontWeight(.ultraLight)
                     
-                    VStack(spacing: 20) {
+                    Spacer()
+                    
+                    VStack (alignment: .leading, spacing: 10) {
                         ForEach(0..<self.timerVM.rows) { i in
-                            HStack(alignment: .center, spacing: 0) {
+                            HStack (spacing: 0) {
                                 ForEach(0..<self.timerVM.columns) { j in
                                     self.buildTimerView(i, j)
                                 }
                             }
                         }
-                    }.padding()
+                    }
+                    .padding(.bottom)
                     
-                    VStack {
+                    Spacer()
+                    
+                    HStack {
+                        Spacer()
                         ResetButtonView(button: self.$timerVM.resetButton)
                         AddButtonView(button: self.$timerVM.addButton)
                         StartButtonView(button: self.$timerVM.startButton)
+                        Spacer()
                     }
                 }
+                .padding(.vertical)
+            } else {
+                
+                HStack (alignment: .center) {
+                    
+                    Text(self.timerVM.mainTime.display3())
+                        .font(Font.system(size: 80).monospacedDigit())
+                        .fontWeight(.ultraLight)
+                    
+                    Spacer()
+                    
+                    VStack (alignment: .leading, spacing: 10) {
+                        ForEach(0..<self.timerVM.rows) { i in
+                            HStack (spacing: 0) {
+                                ForEach(0..<self.timerVM.columns) { j in
+                                    self.buildTimerView(i, j)
+                                }
+                            }
+                        }
+                    }
+                    
+                    Spacer()
+                    
+                    VStack {
+                        Spacer()
+                        StartButtonView(button: self.$timerVM.startButton)
+                        AddButtonView(button: self.$timerVM.addButton)
+                        ResetButtonView(button: self.$timerVM.resetButton)
+                        Spacer()
+                    }
+                }
+                .padding([.horizontal, .bottom])
             }
         }
     }
     
     func buildTimerView(_ i: Int, _ j: Int) -> AnyView {
-        let n = 3 * i + j
+        let n = timerVM.columns * i + j
         if (timerVM.timers.indices ~= n) {
             if !timerVM.timers[n].isRemoved {
                 return AnyView(CircleTimerView(timer: $timerVM.timers[n]))
