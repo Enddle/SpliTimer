@@ -31,6 +31,12 @@ struct SettingsView: View {
             }) {
                 Text("Change to Grey Line Icon")
             }
+            
+            Button(action: {
+                UserDefaults.standard.set([], forKey: "SavedLabels")
+            }) {
+                Text("Clear Data")
+            }
         }
     }
 }

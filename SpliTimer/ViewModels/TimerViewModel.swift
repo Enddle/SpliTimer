@@ -19,9 +19,7 @@ class TimerViewModel: ObservableObject {
     
     var active = 0 { didSet {didChange.send()} }
     var activeId = 0
-    @Published var timers: [STSubTimer] = [
-        STSubTimer(id: 0, label: "SpliTimer 0", isTiming: true)
-    ]
+    @Published var timers: [STSubTimer]
     
     @Published var isMainTiming = false
     // didChange not working when pausing, temporary published
@@ -35,6 +33,17 @@ class TimerViewModel: ObservableObject {
     var startButton = ControlButton(id: 2, icon: "play.fill", color: Color(.systemGreen), icon2: "stop.fill", color2: Color(.systemRed))
     
     let didChange = PassthroughSubject<Void, Never>()
+    
+    init() {
+        var restoredTimers: [STSubTimer] = []
+        if let data = UserDefaults.standard.object(forKey: "SavedLabels") as? [String] {
+            for (n, label) in zip(data.indices, data) {
+                restoredTimers.append(STSubTimer(id: n, label: label, isTiming: (n == self.active) ))
+            }
+        }
+        self.timers = restoredTimers.count > 0 ? restoredTimers
+            : [STSubTimer(id: 0, label: "SpliTimer 0", isTiming: true)]
+    }
     
     var timer = Timer()
     let haptic = HapticFeedback()
@@ -88,6 +97,7 @@ class TimerViewModel: ObservableObject {
                 timers.append(STSubTimer(id: id, label: "SpliTimer \(id)"))
             }
             countTimers()
+            saveTimers()
         } else {
             haptic.error()
         }
@@ -105,6 +115,7 @@ class TimerViewModel: ObservableObject {
                 timerTapped(index: timers.firstIndex(where: {!$0.isRemoved}) ?? 0)
             }
             countTimers()
+            saveTimers()
         }
     }
     
@@ -143,5 +154,15 @@ class TimerViewModel: ObservableObject {
     @objc func action() {
         mainTime.raw += 1
         timers[active].subTime.raw += 1
+    }
+    
+    func saveTimers() {
+        var data: [String] = []
+        for timer in timers {
+            if (!timer.isRemoved) {
+                data.append(timer.label)
+            }
+        }
+        UserDefaults.standard.set(data, forKey: "SavedLabels")
     }
 }

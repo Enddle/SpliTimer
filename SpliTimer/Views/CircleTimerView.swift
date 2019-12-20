@@ -33,6 +33,7 @@ struct CircleTimerView: View {
             
             TextField("Timer Name", text: $timer.label, onCommit: {
                 self.disableEdit = true
+                self.rootVM.saveTimers()
             })
                 .font(.body).multilineTextAlignment(.center)
                 .foregroundColor(timer.isTiming ? Color(.label) : Color(.secondaryLabel))

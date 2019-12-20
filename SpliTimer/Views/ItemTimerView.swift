@@ -19,6 +19,7 @@ struct ItemTimerView: View {
         HStack {
             TextField("Timer Name", text: $timer.label, onCommit: {
                 self.disableEdit = true
+                self.rootVM.saveTimers()
             })
                 .font(.body)
                 .foregroundColor(timer.isTiming ? Color(.label) : Color(.secondaryLabel))
