@@ -14,7 +14,8 @@ class AppearanceEnvironment: ObservableObject {
     
     let notification = NotificationCenter.default
     
-    @Published var keyboardInset = EdgeInsets()
+    @Published var keyboardInsetHeight = CGFloat()
+    @Published var hasKeyboard = false
     var safeAreaInsets = EdgeInsets()
     
     let minHeightForPortrait: CGFloat = 499.0  // iPhone SE (13.2) safe area height
@@ -33,9 +34,11 @@ class AppearanceEnvironment: ObservableObject {
         let keyboardFrame = keyboard.cgRectValue
         
         if notification.name == UIResponder.keyboardWillHideNotification {
-            self.keyboardInset = EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+            self.hasKeyboard = false
+            self.keyboardInsetHeight = 0
         } else {
-            self.keyboardInset = EdgeInsets(top: 0, leading: 0, bottom: keyboardFrame.height - safeAreaInsets.bottom, trailing: 0)
+            self.hasKeyboard = true
+            self.keyboardInsetHeight = keyboardFrame.height - safeAreaInsets.bottom
         }
     }
     

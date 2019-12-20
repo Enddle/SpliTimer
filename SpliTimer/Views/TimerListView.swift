@@ -42,8 +42,9 @@ struct TimerListView: View {
                 }
                 .onDelete(perform: deleteTimerView)
                 
-                AddItemButtonView()
-                    .listRowInsets(appearance.keyboardInset)
+                buildAddButton()
+                
+                buildKeyboardInset()
             }
         }
     }
@@ -61,6 +62,24 @@ struct TimerListView: View {
         if offsets.count == 1 {
             timerVM.removeTimer(index: offsets.first!)
         }
+    }
+    
+    func buildAddButton() -> AnyView {
+        if self.timerVM.canAddItemTimer {
+            return AnyView(AddItemButtonView())
+        }
+        return AnyView(EmptyView())
+    }
+    
+    func buildKeyboardInset() -> AnyView {
+        if self.appearance.hasKeyboard {
+            return AnyView(
+                Text("")
+                    .padding(0)
+                    .frame(width: 1, height: self.appearance.keyboardInsetHeight)
+            )
+        }
+        return AnyView(EmptyView())
     }
 }
 

@@ -43,6 +43,7 @@ class TimerViewModel: ObservableObject {
         }
         self.timers = restoredTimers.count > 0 ? restoredTimers
             : [STSubTimer(id: 0, label: "SpliTimer 0", isTiming: true)]
+        countTimers()
     }
     
     var timer = Timer()

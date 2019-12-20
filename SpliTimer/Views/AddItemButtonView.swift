@@ -13,24 +13,17 @@ struct AddItemButtonView: View {
     @EnvironmentObject var rootVM: TimerViewModel
     
     var body: some View {
-        
-        if self.rootVM.canAddItemTimer {
-            return AnyView(
-                Button (action: {
-                    self.rootVM.addTimer(isList: true)
-                }) {
-                    HStack {
-                        Spacer()
-                        Image(systemName: "plus")
-                            .font(.title)
-                            .foregroundColor(Color(.secondaryLabel))
-                        Spacer()
-                    }.padding()
-                })
+
+        Button (action: {
+            self.rootVM.addTimer(isList: true)
+        }) {
+            HStack {
+                Spacer()
+                Image(systemName: "plus")
+                    .font(.title)
+                    .foregroundColor(Color(.secondaryLabel))
+                Spacer()
+            }.padding()
         }
-        return AnyView(
-            HStack{
-                EmptyView()
-        })
     }
 }
