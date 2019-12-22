@@ -14,9 +14,8 @@ class AppearanceEnvironment: ObservableObject {
     
     let notification = NotificationCenter.default
     
-    @Published var keyboardInsetHeight = CGFloat()
-    @Published var hasKeyboard = false
-    var safeAreaInsets = EdgeInsets()
+    @Published var keyboardSafeInset = CGFloat()
+    var safeAreaInset = CGFloat()
     
     let minHeightForPortrait: CGFloat = 499.0  // iPhone SE (13.2) safe area height
     @Published var layoutPortrait = true
@@ -34,11 +33,9 @@ class AppearanceEnvironment: ObservableObject {
         let keyboardFrame = keyboard.cgRectValue
         
         if notification.name == UIResponder.keyboardWillHideNotification {
-            self.hasKeyboard = false
-            self.keyboardInsetHeight = 0
+            self.keyboardSafeInset = 0
         } else {
-            self.hasKeyboard = true
-            self.keyboardInsetHeight = keyboardFrame.height - safeAreaInsets.bottom
+            self.keyboardSafeInset = keyboardFrame.height - safeAreaInset
         }
     }
     
@@ -53,7 +50,7 @@ class AppearanceEnvironment: ObservableObject {
      */
     
     func isLayoutPortrait(_ geometry: GeometryProxy) -> Bool {
-        safeAreaInsets = geometry.safeAreaInsets
+        safeAreaInset = geometry.safeAreaInsets.bottom
         return geometry.size.height >= minHeightForPortrait
     }
 }

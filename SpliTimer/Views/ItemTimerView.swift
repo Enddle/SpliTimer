@@ -17,18 +17,7 @@ struct ItemTimerView: View {
     
     var body: some View {
         HStack {
-            TextField("Timer Name", text: $timer.label, onCommit: {
-                self.disableEdit = true
-                self.rootVM.saveTimers()
-            })
-                .font(.body)
-                .foregroundColor(timer.isTiming ? Color(.label) : Color(.secondaryLabel))
-                .disableAutocorrection(true)
-                .disabled(disableEdit)
-                .onTapGesture {
-                    self.disableEdit = false
-                    self.rootVM.haptic.selection()
-            }
+            buildText()
             
             Spacer()
 
@@ -41,5 +30,35 @@ struct ItemTimerView: View {
                     .foregroundColor(timer.isTiming ? Color(.label) : Color(.secondaryLabel))
             }
         }.padding()
+    }
+    
+    func buildText() -> AnyView {
+        if !disableEdit || self.timer.label.isEmpty {
+            return AnyView(
+                TextField("Timer Name", text: self.$timer.label, onCommit: {
+                    self.disableEdit = !self.timer.label.isEmpty  // disable if not empty
+                    self.rootVM.saveTimers()
+                })
+                    .font(.body)
+                    .foregroundColor(timer.isTiming ? Color(.label) : Color(.secondaryLabel))
+                    .disableAutocorrection(true)
+                    .onTapGesture {
+                        self.rootVM.haptic.selection()
+                        
+                        // Initialize state value for saved empty label (fix disabled when input)
+                        if self.timer.label.isEmpty { self.disableEdit = false }
+                }
+            )
+        } else {
+            return AnyView(
+                Text(self.timer.label)
+                    .font(.body)
+                    .foregroundColor(timer.isTiming ? Color(.label) : Color(.secondaryLabel))
+                    .onTapGesture {
+                        self.rootVM.haptic.selection()
+                        self.disableEdit = false
+                }
+            )
+        }
     }
 }

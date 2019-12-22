@@ -43,16 +43,19 @@ struct TimerListView: View {
                 .onDelete(perform: deleteTimerView)
                 
                 buildAddButton()
-                
-                buildKeyboardInset()
             }
+            .padding(.bottom, self.appearance.keyboardSafeInset)
+            .animation(.easeInOut)
         }
     }
     
     func buildTimerView(_ n: Int) -> AnyView {
         if (timerVM.timers.indices ~= n) {
             if !timerVM.timers[n].isRemoved {
-                return AnyView(ItemTimerView(timer: $timerVM.timers[n]))
+                return AnyView(
+                    ItemTimerView(timer: $timerVM.timers[n])
+                        .animation(.none)
+                )
             }
         }
         return AnyView(EmptyView())
@@ -67,17 +70,6 @@ struct TimerListView: View {
     func buildAddButton() -> AnyView {
         if self.timerVM.canAddItemTimer {
             return AnyView(AddItemButtonView())
-        }
-        return AnyView(EmptyView())
-    }
-    
-    func buildKeyboardInset() -> AnyView {
-        if self.appearance.hasKeyboard {
-            return AnyView(
-                Text("")
-                    .padding(0)
-                    .frame(width: 1, height: self.appearance.keyboardInsetHeight)
-            )
         }
         return AnyView(EmptyView())
     }
