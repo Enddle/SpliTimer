@@ -11,6 +11,9 @@ import SwiftUI
 struct SettingsView: View {
     
     let icon = AppIconUtil()
+    @EnvironmentObject var timerVM: TimerViewModel
+    
+    @State var showRemoveAllAlert = false
     
     var body: some View {
         List {
@@ -36,6 +39,17 @@ struct SettingsView: View {
                 UserDefaults.standard.set([], forKey: "SavedLabels")
             }) {
                 Text("Clear Data")
+            }
+            
+            Button(action: {
+                self.showRemoveAllAlert = true
+            }) {
+                Text("Remove All Timers")
+            }
+            .alert(isPresented:$showRemoveAllAlert) {
+                Alert(title: Text("Remove All Timers"), message: Text("This action cannot be undone"), primaryButton: .destructive(Text("Delete")) {
+                        self.timerVM.removeAllTimers()
+                }, secondaryButton: .cancel())
             }
         }
     }

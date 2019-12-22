@@ -16,7 +16,7 @@ struct ResetButtonView: View {
     var body: some View {
         
         Button(action: {
-            self.rootVM.resetTimer()
+            self.rootVM.resetTimers()
         }) {
             Image(systemName: rootVM.canResetTime ? button.icon : button.icon2)
                 .foregroundColor(rootVM.canResetTime ? button.color : button.color2)

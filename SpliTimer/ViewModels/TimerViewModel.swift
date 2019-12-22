@@ -20,6 +20,7 @@ class TimerViewModel: ObservableObject {
     var active = 0 { didSet {didChange.send()} }
     var activeId = 0
     @Published var timers: [STSubTimer]
+    let defaultTimer = STSubTimer(id: 0, label: "SpliTimer 0", isTiming: true)
     
     @Published var isMainTiming = false
     // didChange not working when pausing, temporary published
@@ -41,8 +42,7 @@ class TimerViewModel: ObservableObject {
                 restoredTimers.append(STSubTimer(id: n, label: label, isTiming: (n == self.active) ))
             }
         }
-        self.timers = restoredTimers.count > 0 ? restoredTimers
-            : [STSubTimer(id: 0, label: "SpliTimer 0", isTiming: true)]
+        self.timers = restoredTimers.count > 0 ? restoredTimers : [defaultTimer]
         countTimers()
     }
     
@@ -69,7 +69,7 @@ class TimerViewModel: ObservableObject {
         didChange.send()
     }
     
-    func resetTimer() {
+    func resetTimers() {
         if canResetTime {
             haptic.success()
             timer.invalidate()
@@ -118,6 +118,18 @@ class TimerViewModel: ObservableObject {
             countTimers()
             saveTimers()
         }
+    }
+    
+    func removeAllTimers() {
+        resetTimers()
+        
+        for n in timers.indices {  // loop all
+            timers[n].isRemoved = true
+        }
+        timers[0] = defaultTimer
+        
+        countTimers()
+        saveTimers()
     }
     
     func countTimers() {

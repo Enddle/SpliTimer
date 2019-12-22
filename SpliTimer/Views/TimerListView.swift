@@ -22,7 +22,7 @@ struct TimerListView: View {
         
         let mainHold = LongPressGesture(minimumDuration: 0.5)
             .onEnded({ _ in
-                self.timerVM.resetTimer()
+                self.timerVM.resetTimers()
             })
         
         return VStack {
