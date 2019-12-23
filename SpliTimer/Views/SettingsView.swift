@@ -12,46 +12,79 @@ struct SettingsView: View {
     
     let icon = AppIconUtil()
     @EnvironmentObject var timerVM: TimerViewModel
+    @EnvironmentObject var appearance: AppearanceEnvironment
     
     @State var showRemoveAllAlert = false
     
     var body: some View {
         List {
-            Button(action: {
-                self.icon.changeAppIcon(.reset)
-            }) {
-                Text("Reset Icon")
+            Section(){
+
+                Button("Remove All Timers", action: {
+                    self.showRemoveAllAlert = true
+                })
+                .alert(isPresented:$showRemoveAllAlert) {
+                    Alert(title: Text("Remove All Timers"), message: Text("This action cannot be undone"), primaryButton: .destructive(Text("Delete")) {
+                            self.timerVM.removeAllTimers()
+                    }, secondaryButton: .cancel())
+                }
+
+                Button("Clear Data", action: {
+                    UserDefaults.standard.set([], forKey: "SavedLabels")
+                })
             }
             
-            Button(action: {
-                self.icon.changeAppIcon(.greyIcon)
-            }) {
-                Text("Change to Grey Icon")
+            Section() {
+                
+                Stepper("Timer Rows: \(timerVM.rows)", value: $timerVM.rows, in: 1...5, onEditingChanged: { _ in
+                    self.timerVM.saveSettings()
+                })
+                Stepper("Timer Columns: \(timerVM.columns)", value: $timerVM.columns, in: 1...5, onEditingChanged: { _ in
+                    self.timerVM.saveSettings()
+                })
+                Stepper("Timer List Items: \(timerVM.items)", value: $timerVM.items, in: timerVM.rows*timerVM.columns...25, onEditingChanged: { _ in
+                    self.timerVM.saveSettings()
+                })
+                
+                Toggle("Create Empty Label", isOn: $timerVM.useEmptyLabel)
+                    .onTapGesture {
+                        self.timerVM.saveSettings()
+                }
+                
+                HStack(alignment: .firstTextBaseline) {
+                    Text("Placeholder Text")
+                    Spacer()
+                    TextField("Text", text: $timerVM.placeholder, onCommit: {
+                        self.timerVM.saveSettings()
+                    })
+                        .multilineTextAlignment(.trailing)
+                }
+                .disabled(timerVM.useEmptyLabel)
+                .foregroundColor(timerVM.useEmptyLabel ? Color(.secondaryLabel) : Color(.label))
+                
+                Button("Restore Settings", action: {
+                    self.timerVM.restoreSettings()
+                })
             }
             
-            Button(action: {
-                self.icon.changeAppIcon(.greyLineIcon)
-            }) {
-                Text("Change to Grey Line Icon")
+            Section() {
+
+                Button("Reset Icon", action: {
+                    self.icon.changeAppIcon(.reset)
+                })
+                
+                Button("Change to Grey Icon", action: {
+                    self.icon.changeAppIcon(.greyIcon)
+                })
+                
+                Button("Change to Grey Line Icon", action: {
+                    self.icon.changeAppIcon(.greyLineIcon)
+                })
             }
             
-            Button(action: {
-                UserDefaults.standard.set([], forKey: "SavedLabels")
-            }) {
-                Text("Clear Data")
-            }
-            
-            Button(action: {
-                self.showRemoveAllAlert = true
-            }) {
-                Text("Remove All Timers")
-            }
-            .alert(isPresented:$showRemoveAllAlert) {
-                Alert(title: Text("Remove All Timers"), message: Text("This action cannot be undone"), primaryButton: .destructive(Text("Delete")) {
-                        self.timerVM.removeAllTimers()
-                }, secondaryButton: .cancel())
-            }
         }
+        .listStyle(GroupedListStyle())
+        .padding(.bottom, self.appearance.keyboardSafeInset)
     }
 }
 

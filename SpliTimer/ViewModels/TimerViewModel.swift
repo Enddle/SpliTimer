@@ -13,14 +13,17 @@ class TimerViewModel: ObservableObject {
     
     @Published var mainTime = STTime()
     
-    let rows = 2
-    let columns = 3
-    let items = 10
+    @Published var rows: Int
+    @Published var columns: Int
+    @Published var items: Int
+    
+    @Published var useEmptyLabel: Bool
+    @Published var placeholder: String
     
     var active = 0 { didSet {didChange.send()} }
     var activeId = 0
     @Published var timers: [STSubTimer]
-    let defaultTimer = STSubTimer(id: 0, label: "SpliTimer 0", isTiming: true)
+    var defaultTimer = STSubTimer(id: 0, label: "SpliTimer 0", isTiming: true)
     
     @Published var isMainTiming = false
     // didChange not working when pausing, temporary published
@@ -36,13 +39,28 @@ class TimerViewModel: ObservableObject {
     let didChange = PassthroughSubject<Void, Never>()
     
     init() {
+        let defaults = UserDefaults.standard
+        
+        rows = defaults.integer(forKey: "TimerRows")
+        columns = defaults.integer(forKey: "TimerColumns")
+        items = defaults.integer(forKey: "TimerItems")
+        
+        useEmptyLabel = defaults.bool(forKey: "LabelUseEmpty")
+        placeholder = defaults.string(forKey: "LabelPlaceholder") ?? "SpliTimer"
+        
         var restoredTimers: [STSubTimer] = []
-        if let data = UserDefaults.standard.object(forKey: "SavedLabels") as? [String] {
+        if let data = defaults.object(forKey: "SavedLabels") as? [String] {
             for (n, label) in zip(data.indices, data) {
                 restoredTimers.append(STSubTimer(id: n, label: label, isTiming: (n == self.active) ))
             }
         }
         self.timers = restoredTimers.count > 0 ? restoredTimers : [defaultTimer]
+        
+        defaultTimer.label = useEmptyLabel ? "" : "\(placeholder) \(defaultTimer.id)"
+        
+        rows = rows == 0 ? 2 : rows
+        columns = columns == 0 ? 3 : columns
+        items = items == 0 ? 10 : items
         countTimers()
     }
     
@@ -91,11 +109,11 @@ class TimerViewModel: ObservableObject {
             let id = (timers.last(where: {!$0.isRemoved})?.id ?? -1) + 1
             
             if let reuseOffset = timers.firstIndex(where: {$0.isRemoved}) {  // reuse hidden timer
-                timers[reuseOffset] = STSubTimer(id: id, label: "SpliTimer \(id)")
+                timers[reuseOffset] = STSubTimer(id: id, label: useEmptyLabel ? "" : "\(placeholder) \(id)")
                 print("reusing \(reuseOffset) as \(id)")
             } else {
                 
-                timers.append(STSubTimer(id: id, label: "SpliTimer \(id)"))
+                timers.append(STSubTimer(id: id, label: useEmptyLabel ? "" : "\(placeholder) \(id)"))
             }
             countTimers()
             saveTimers()
@@ -169,6 +187,8 @@ class TimerViewModel: ObservableObject {
         timers[active].subTime.raw += 1
     }
     
+    let defaults = UserDefaults.standard
+    
     func saveTimers() {
         var data: [String] = []
         for timer in timers {
@@ -176,6 +196,32 @@ class TimerViewModel: ObservableObject {
                 data.append(timer.label)
             }
         }
-        UserDefaults.standard.set(data, forKey: "SavedLabels")
+        defaults.set(data, forKey: "SavedLabels")
+    }
+    
+    func saveSettings() {
+        if items < rows * columns {
+            items = rows * columns
+        }
+        
+        defaults.set(rows, forKey: "TimerRows")
+        defaults.set(columns, forKey: "TimerColumns")
+        defaults.set(items, forKey: "TimerItems")
+        
+        defaults.set(useEmptyLabel, forKey: "LabelUseEmpty")
+        defaults.set(placeholder, forKey: "LabelPlaceholder")
+        
+        countTimers()
+    }
+    
+    func restoreSettings() {
+        rows = 2
+        columns = 3
+        items = 10
+        
+        useEmptyLabel = false
+        placeholder = "SpliTimer"
+        
+        saveTimers()
     }
 }
