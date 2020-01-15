@@ -21,6 +21,9 @@ struct SettingsView: View {
     @State var isShowingMailView = false
     @State var isShowingMailError = false
     
+    let versionStr = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "unknown"
+    let bundleId = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "-"
+    
     var body: some View {
         ZStack {
             NavigationView {
@@ -101,14 +104,16 @@ struct SettingsView: View {
                             
                             Text("SpliTimer")
                                 .font(.headline)
-                                .padding()
+                                .padding(10)
                             
-                            Text("Version: \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "unknown")")
-                                .font(.subheadline)
-                                .padding()
+                            Text("Version: \(versionStr) (\(bundleId))")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                                .padding(8)
                             
                             Text("Developer: Enddle Zheng")
-                                .font(.subheadline)
+                                .font(.caption)
+                                .foregroundColor(.secondary)
                         }
                         .frame(minWidth: 0, maxWidth: .infinity)
                         .padding()
@@ -122,6 +127,7 @@ struct SettingsView: View {
                 .padding(.bottom, self.appearance.keyboardSafeInset)
                 .navigationBarTitle("Settings")
             }
+            .navigationViewStyle(StackNavigationViewStyle())
             
             if (isShowingMailView) {
                 mailView()

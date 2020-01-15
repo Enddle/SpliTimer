@@ -22,10 +22,12 @@ struct CircleTimerView: View {
                 self.rootVM.timerTapped(id: self.timer.id)
             }) {
                 Text(timer.subTime.display2())
+                    .lineLimit(1)
                     .font(Font.body.monospacedDigit())
                     .foregroundColor(timer.isTiming ? Color(.label) : Color(.secondaryLabel))
-                    .padding(24)
-                    .background(Circle().fill(timer.isTiming ? Color(.systemGray4) : Color(.systemGray6)))
+                    .frame(width: 68, height: 68)
+                    .background(timer.isTiming ? Color(.systemGray4) : Color(.systemGray6))
+                    .cornerRadius(34)
                     .padding(3)
                     .overlay(Circle().stroke(timer.isTiming ? Color(.systemGray4) : Color(.systemGray6), lineWidth: 2))
             }
